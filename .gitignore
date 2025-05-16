@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -172,3 +173,12 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+=======
+.DS_Store
+*.pyc
+*.egg-info
+*.swp
+tags
+node_modules
+__pycache__
+>>>>>>> Anamec Custom App
