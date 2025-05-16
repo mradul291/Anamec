@@ -19,13 +19,14 @@ frappe.ui.form.on("Calibration", {
         // Calculate the weight for each part
         let part_weight = test_weight / 10;
 
-        // Add 10 rows with equal parts
-        for (let i = 0; i < 10; i++) {
+        // Add 10 rows with equal parts (cumulative)
+        for (let i = 1; i < 11; i++) {
             let row = frm.add_child("calibration_result");
-            row.std_weight = part_weight;
+            row.std_weight = Number((part_weight * i).toFixed(2));
         }
 
         // Refresh the field to show changes
         frm.refresh_field("calibration_result");
     }
 });
+
