@@ -1,0 +1,61 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-05-16 16:34:58.353898",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "std_weight",
+  "tolerance",
+  "displayed_weight",
+  "deviation",
+  "column_break_smss"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "std_weight",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Standard Weight"
+  },
+  {
+   "columns": 2,
+   "fieldname": "tolerance",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tolerance"
+  },
+  {
+   "columns": 2,
+   "fieldname": "displayed_weight",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Displayed weight"
+  },
+  {
+   "columns": 2,
+   "fieldname": "deviation",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Deviation"
+  },
+  {
+   "fieldname": "column_break_smss",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-05-16 16:46:47.177063",
+ "modified_by": "Administrator",
+ "module": "Anamec Instruments",
+ "name": "Calibration Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

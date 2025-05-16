@@ -1,0 +1,129 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-05-16 16:21:05.015300",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_scrg",
+  "company",
+  "customer_name",
+  "report_date",
+  "column_break_givx",
+  "status",
+  "section_break_nafq",
+  "item_calibration_name",
+  "column_break_kugl",
+  "item_code",
+  "column_break_nnjn",
+  "test_weight",
+  "std_tolerance",
+  "section_break_tdqe",
+  "calibration_result"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_scrg",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1
+  },
+  {
+   "fieldname": "report_date",
+   "fieldtype": "Date",
+   "label": "Report Date"
+  },
+  {
+   "fieldname": "column_break_givx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Link",
+   "label": "Customer Name",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nAccepted\nRejected"
+  },
+  {
+   "fieldname": "section_break_nafq",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "item_calibration_name",
+   "fieldtype": "Data",
+   "label": "Item Calibration Name"
+  },
+  {
+   "fieldname": "column_break_kugl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "column_break_nnjn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "test_weight",
+   "fieldtype": "Int",
+   "label": "Test Weight"
+  },
+  {
+   "fieldname": "section_break_tdqe",
+   "fieldtype": "Section Break",
+   "hide_border": 1
+  },
+  {
+   "fieldname": "calibration_result",
+   "fieldtype": "Table",
+   "label": "Calibration Result",
+   "options": "Calibration Item"
+  },
+  {
+   "fieldname": "std_tolerance",
+   "fieldtype": "Float",
+   "label": "Standard Tolerance",
+   "precision": "2"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-05-16 17:17:39.057217",
+ "modified_by": "Administrator",
+ "module": "Anamec Instruments",
+ "name": "Calibration",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
