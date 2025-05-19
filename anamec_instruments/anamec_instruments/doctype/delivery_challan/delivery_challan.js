@@ -22,119 +22,120 @@ erpnext.accounts.taxes.setup_tax_filters("Sales Taxes and Charges");
 erpnext.accounts.taxes.setup_tax_validations("Delivery Challan");
 erpnext.sales_common.setup_selling_controller();
 
-frappe.ui.form.on("Delivery Challan", {
-	setup: function (frm) {
-		(frm.custom_make_buttons = {
-			"Packing Slip": "Packing Slip",
-			"Installation Note": "Installation Note",
-			"Sales Invoice": "Sales Invoice",
-			"Stock Entry": "Return",
-			Shipment: "Shipment",
-		}),
-			frm.set_indicator_formatter("item_code", function (doc) {
-				return doc.docstatus == 1 || doc.qty <= doc.actual_qty ? "green" : "orange";
-			});
 
-		erpnext.queries.setup_queries(frm, "Warehouse", function () {
-			return erpnext.queries.warehouse(frm.doc);
-		});
-		erpnext.queries.setup_warehouse_query(frm);
+// frappe.ui.form.on("Delivery Challan", {
+// 	setup: function (frm) {
+// 		(frm.custom_make_buttons = {
+// 			"Packing Slip": "Packing Slip",
+// 			"Installation Note": "Installation Note",
+// 			"Sales Invoice": "Sales Invoice",
+// 			"Stock Entry": "Return",
+// 			Shipment: "Shipment",
+// 		}),
+// 			frm.set_indicator_formatter("item_code", function (doc) {
+// 				return doc.docstatus == 1 || doc.qty <= doc.actual_qty ? "green" : "orange";
+// 			});
 
-		frm.set_query("transporter", function () {
-			return {
-				filters: {
-					is_transporter: 1,
-				},
-			};
-		});
+// 		erpnext.queries.setup_queries(frm, "Warehouse", function () {
+// 			return erpnext.queries.warehouse(frm.doc);
+// 		});
+// 		erpnext.queries.setup_warehouse_query(frm);
 
-		frm.set_query("driver", function (doc) {
-			return {
-				filters: {
-					transporter: doc.transporter,
-				},
-			};
-		});
+// 		frm.set_query("transporter", function () {
+// 			return {
+// 				filters: {
+// 					is_transporter: 1,
+// 				},
+// 			};
+// 		});
 
-		frm.set_query("expense_account", "items", function (doc, cdt, cdn) {
-			if (erpnext.is_perpetual_inventory_enabled(doc.company)) {
-				return {
-					filters: {
-						report_type: "Profit and Loss",
-						company: doc.company,
-						is_group: 0,
-					},
-				};
-			}
-		});
+// 		frm.set_query("driver", function (doc) {
+// 			return {
+// 				filters: {
+// 					transporter: doc.transporter,
+// 				},
+// 			};
+// 		});
 
-		frm.set_query("cost_center", "items", function (doc, cdt, cdn) {
-			if (erpnext.is_perpetual_inventory_enabled(doc.company)) {
-				return {
-					filters: {
-						company: doc.company,
-						is_group: 0,
-					},
-				};
-			}
-		});
+// 		frm.set_query("expense_account", "items", function (doc, cdt, cdn) {
+// 			if (erpnext.is_perpetual_inventory_enabled(doc.company)) {
+// 				return {
+// 					filters: {
+// 						report_type: "Profit and Loss",
+// 						company: doc.company,
+// 						is_group: 0,
+// 					},
+// 				};
+// 			}
+// 		});
 
-		frm.set_df_property("packed_items", "cannot_add_rows", true);
-		frm.set_df_property("packed_items", "cannot_delete_rows", true);
-	},
+// 		frm.set_query("cost_center", "items", function (doc, cdt, cdn) {
+// 			if (erpnext.is_perpetual_inventory_enabled(doc.company)) {
+// 				return {
+// 					filters: {
+// 						company: doc.company,
+// 						is_group: 0,
+// 					},
+// 				};
+// 			}
+// 		});
 
-	print_without_amount: function (frm) {
-		erpnext.stock.delivery_note.set_print_hide(frm.doc);
-	},
+// 		frm.set_df_property("packed_items", "cannot_add_rows", true);
+// 		frm.set_df_property("packed_items", "cannot_delete_rows", true);
+// 	},
 
-	refresh: function (frm) {
-		if (
-			frm.doc.docstatus === 1 &&
-			frm.doc.is_return === 1 &&
-			frm.doc.per_billed !== 100 &&
-			frappe.model.can_create("Sales Invoice")
-		) {
-			frm.add_custom_button(
-				__("Credit Note"),
-				function () {
-					frappe.model.open_mapped_doc({
-						method: "erpnext.stock.doctype.delivery_note.delivery_note.make_sales_invoice",
-						frm: cur_frm,
-					});
-				},
-				__("Create")
-			);
-			frm.page.set_inner_btn_group_as_primary(__("Create"));
-		}
+// 	print_without_amount: function (frm) {
+// 		erpnext.stock.delivery_note.set_print_hide(frm.doc);
+// 	},
 
-		if (
-			frm.doc.docstatus == 1 &&
-			!frm.doc.inter_company_reference &&
-			frappe.model.can_create("Purchase Receipt")
-		) {
-			let internal = frm.doc.is_internal_customer;
-			if (internal) {
-				let button_label =
-					frm.doc.company === frm.doc.represents_company
-						? "Internal Purchase Receipt"
-						: "Inter Company Purchase Receipt";
+// 	refresh: function (frm) {
+// 		if (
+// 			frm.doc.docstatus === 1 &&
+// 			frm.doc.is_return === 1 &&
+// 			frm.doc.per_billed !== 100 &&
+// 			frappe.model.can_create("Sales Invoice")
+// 		) {
+// 			frm.add_custom_button(
+// 				__("Credit Note"),
+// 				function () {
+// 					frappe.model.open_mapped_doc({
+// 						method: "erpnext.stock.doctype.delivery_note.delivery_note.make_sales_invoice",
+// 						frm: cur_frm,
+// 					});
+// 				},
+// 				__("Create")
+// 			);
+// 			frm.page.set_inner_btn_group_as_primary(__("Create"));
+// 		}
 
-				frm.add_custom_button(
-					__(button_label),
-					function () {
-						frappe.model.open_mapped_doc({
-							method: "erpnext.stock.doctype.delivery_note.delivery_note.make_inter_company_purchase_receipt",
-							frm: frm,
-						});
-					},
-					__("Create")
-				);
-			}
-		}
-	},
-});
+// 		if (
+// 			frm.doc.docstatus == 1 &&
+// 			!frm.doc.inter_company_reference &&
+// 			frappe.model.can_create("Purchase Receipt")
+// 		) {
+// 			let internal = frm.doc.is_internal_customer;
+// 			if (internal) {
+// 				let button_label =
+// 					frm.doc.company === frm.doc.represents_company
+// 						? "Internal Purchase Receipt"
+// 						: "Inter Company Purchase Receipt";
 
-frappe.ui.form.on("Delivery Note Item", {
+// 				frm.add_custom_button(
+// 					__(button_label),
+// 					function () {
+// 						frappe.model.open_mapped_doc({
+// 							method: "erpnext.stock.doctype.delivery_note.delivery_note.make_inter_company_purchase_receipt",
+// 							frm: frm,
+// 						});
+// 					},
+// 					__("Create")
+// 				);
+// 			}
+// 		}
+// 	},
+// });
+
+frappe.ui.form.on("Delivery Challan Item", {
 	expense_account: function (frm, dt, dn) {
 		var d = locals[dt][dn];
 		frm.update_in_all_rows("items", "expense_account", d.expense_account);
@@ -143,6 +144,34 @@ frappe.ui.form.on("Delivery Note Item", {
 		var d = locals[dt][dn];
 		frm.update_in_all_rows("items", "cost_center", d.cost_center);
 	},
+	qty: function (frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+
+		if (row.rate && row.qty) {
+			let calculated_amount = row.rate * row.qty;
+			frappe.model.set_value(cdt, cdn, 'amount', calculated_amount);
+		} else {
+			frappe.model.set_value(cdt, cdn, 'amount', 0);
+		}
+	},
+	rate: function (frm, cdt, cdn) {
+		let row = locals[cdt][cdn];
+
+		if (row.price_list_rate && row.rate) {
+			let discount_amount = row.price_list_rate - row.rate;
+			let discount_percentage = (discount_amount / row.price_list_rate) * 100;
+
+			frappe.model.set_value(cdt, cdn, 'discount_amount', discount_amount);
+			frappe.model.set_value(cdt, cdn, 'discount_percentage', discount_percentage);
+			frappe.model.set_value(cdt, cdn, 'amount', row.rate * row.qty);
+
+		} else {
+			// Clear discount if values are missing
+			frappe.model.set_value(cdt, cdn, 'discount_amount', 0);
+			frappe.model.set_value(cdt, cdn, 'discount_percentage', 0);
+			frappe.model.set_value(cdt, cdn, 'amount', row.rate * row.qty);
+		}
+	}
 });
 
 erpnext.stock.DeliveryNoteController = class DeliveryNoteController extends (
