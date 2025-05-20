@@ -30,3 +30,19 @@ frappe.ui.form.on("Calibration", {
     }
 });
 
+frappe.ui.form.on("Calibration Item", {
+    displayed_weight(frm, cdt, cdn) {
+        console.log("Inside displayed_weight");
+        let row = locals[cdt][cdn];
+
+        // Ensure both std_weight and displayed_weight are present
+        if (row.std_weight && row.displayed_weight) {
+            row.deviation = Number((row.std_weight - row.displayed_weight).toFixed(2));
+        } else {
+            row.deviation = 0;
+        }
+
+        // Refresh just the row to avoid redrawing the entire child table
+        frm.fields_dict["calibration_result"].grid.refresh();
+    }
+});
