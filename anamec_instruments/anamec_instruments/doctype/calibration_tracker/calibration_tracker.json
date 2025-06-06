@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-06 13:04:03.700676",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "ref_name",
+  "calibration_name",
+  "column_break_wlxi",
+  "due_date",
+  "is_read"
+ ],
+ "fields": [
+  {
+   "fieldname": "ref_name",
+   "fieldtype": "Link",
+   "label": "Reference Name",
+   "options": "Calibration",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_wlxi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_read",
+   "fieldtype": "Check",
+   "label": "Is Read"
+  },
+  {
+   "fetch_from": "ref_name.item_calibration_name",
+   "fieldname": "calibration_name",
+   "fieldtype": "Data",
+   "label": "Calibration Name",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-06-06 15:22:10.653384",
+ "modified_by": "Administrator",
+ "module": "Anamec Instruments",
+ "name": "Calibration Tracker",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

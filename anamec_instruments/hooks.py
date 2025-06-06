@@ -8,6 +8,15 @@ app_license = "mit"
 # Apps
 # ------------------
 
+# on_login = "anamec_instruments.utils.on_login"
+
+on_login = "anamec_instruments.utils.on_user_login"
+app_include_js = "/assets/anamec_instruments/js/calibration_popup.js"
+
+# doctype_js = {
+#     "Calibration": "public/js/calibration_popup.js"
+# }
+
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
@@ -148,6 +157,13 @@ app_license = "mit"
 # Scheduled Tasks
 # ---------------
 
+scheduler_events = {
+    "cron": {
+        "*/15 * * * *": [
+            "anamec_instruments.utils.on_user_login"
+        ]
+    }
+}
 # scheduler_events = {
 # 	"all": [
 # 		"anamec_instruments.tasks.all"
