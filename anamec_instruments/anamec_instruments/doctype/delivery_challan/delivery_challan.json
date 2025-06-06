@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "DLI-CHA-.#####",
  "creation": "2025-05-20 15:55:06.980045",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -13,6 +14,8 @@
   "posting_time",
   "column_break_gtfe",
   "company",
+  "challan_no",
+  "purchase_order_no",
   "section_break_cdxz",
   "delivery_challan_item",
   "section_break_tfol",
@@ -83,7 +86,7 @@
    "label": "Date"
   },
   {
-   "default": "Today",
+   "default": "Now",
    "fieldname": "posting_time",
    "fieldtype": "Time",
    "label": "Posting Time"
@@ -251,15 +254,26 @@
    "fieldtype": "Currency",
    "label": "Total",
    "read_only": 1
+  },
+  {
+   "fieldname": "challan_no",
+   "fieldtype": "Data",
+   "label": "Challan No"
+  },
+  {
+   "fieldname": "purchase_order_no",
+   "fieldtype": "Link",
+   "label": "Purchase Order No",
+   "options": "Purchase Order"
   }
  ],
- "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-05-20 19:30:02.215376",
+ "modified": "2025-05-22 18:42:58.336123",
  "modified_by": "Administrator",
  "module": "Anamec Instruments",
  "name": "Delivery Challan",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
@@ -275,7 +289,6 @@
    "write": 1
   }
  ],
- "row_format": "Dynamic",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

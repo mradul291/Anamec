@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "CAL-.#####",
  "creation": "2025-05-16 16:21:05.015300",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -11,13 +12,22 @@
   "report_date",
   "column_break_givx",
   "status",
+  "test_report_by",
+  "date",
   "section_break_nafq",
   "item_calibration_name",
   "column_break_kugl",
   "item_code",
+  "quantity",
   "column_break_nnjn",
   "test_weight",
   "std_tolerance",
+  "section_break_plmh",
+  "sample_condition",
+  "test_method",
+  "column_break_pcyq",
+  "testing_date",
+  "next_due_date",
   "section_break_tdqe",
   "calibration_result"
  ],
@@ -100,14 +110,58 @@
    "fieldtype": "Float",
    "label": "Standard Tolerance",
    "precision": "2"
+  },
+  {
+   "fieldname": "test_report_by",
+   "fieldtype": "Data",
+   "label": "Test Report By"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "quantity",
+   "fieldtype": "Int",
+   "label": "Quantity"
+  },
+  {
+   "fieldname": "section_break_plmh",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sample_condition",
+   "fieldtype": "Data",
+   "label": "Sample Condition"
+  },
+  {
+   "fieldname": "test_method",
+   "fieldtype": "Data",
+   "label": "Test Method"
+  },
+  {
+   "fieldname": "column_break_pcyq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "testing_date",
+   "fieldtype": "Date",
+   "label": "Testing Date"
+  },
+  {
+   "fieldname": "next_due_date",
+   "fieldtype": "Date",
+   "label": "Next Due Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-05-16 17:17:39.057217",
+ "modified": "2025-05-22 18:05:42.563590",
  "modified_by": "Administrator",
  "module": "Anamec Instruments",
  "name": "Calibration",
+ "naming_rule": "Expression (old style)",
  "owner": "Administrator",
  "permissions": [
   {
