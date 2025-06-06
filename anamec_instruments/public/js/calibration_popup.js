@@ -67,6 +67,7 @@ function markAllCalibrationsAsRead() {
 }
 
 frappe.after_ajax(() => {
+	console.log("AJAX IN")
     showCalibrationDuePopup();
     setInterval(showCalibrationDuePopup, 5 * 60 * 1000); // every 5 minutes
 });
